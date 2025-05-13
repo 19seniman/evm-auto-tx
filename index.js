@@ -18,7 +18,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const askQuestion = (query) => new Promise(resolve => rl.question(query, resolve));
+onst askQuestion = (query) => new Promise(resolve => rl.question(query, resolve));
 
 // Proxy Management
 function loadProxies() {
@@ -31,6 +31,11 @@ function loadProxies() {
         console.error('Error loading proxies:', error.message);
         return [];
     }
+}
+
+function getRandomProxy(proxies) {
+    if (!proxies.length) return null;
+    return proxies[Math.floor(Math.random() * proxies.length)];
 }
 
 function createProxyAgent(proxy) {
@@ -124,7 +129,7 @@ async function selectWallet(network) {
         };
     }));
 
-    wallets.forEach((wallet, index) => {
+     wallets.forEach((wallet, index) => {
         console.log(`${index + 1}. Address: ${wallet.address}`);
         console.log(`   Balance: ${wallet.balance} ${networks[network].symbol}\n`);
     });
@@ -162,7 +167,8 @@ async function claimFaucet(address) {
             data: { address },
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/>            }
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
+            }
         });
 
         if (response.data.success) {
@@ -198,12 +204,12 @@ async function handleFaucetClaims() {
             const wallet = generateNewWallet();
             console.log(`\nWallet ${i + 1}/${numWallets}:`);
             console.log(`Address: ${wallet.address}`);
-               
+            
             saveWalletToFile(wallet.address, wallet.privateKey);
-               
+            
             console.log('Attempting to claim faucet...');
             const result = await claimFaucet(wallet.address);
-               
+            
             if (result.success) {
                 console.log(`Claim successful! TX Hash: ${result.hash}`);
                 console.log(`Amount: ${ethers.formatEther(result.amount)} ${networks.somnia.symbol}`);
@@ -247,11 +253,11 @@ async function handleTokenTransfers(network) {
 
         for (let i = 0; i < numberOfTx; i++) {
             console.log(`\nProcessing transaction ${i + 1} of ${numberOfTx}`);
-               
+            
             const newWallet = generateNewWallet();
             console.log(`Generated recipient address: ${newWallet.address}`);
             saveWalletToFile(newWallet.address, newWallet.privateKey);
-               
+            
             const tx = {
                 to: newWallet.address,
                 value: ethers.parseEther(amountPerTx.toString())
@@ -260,9 +266,9 @@ async function handleTokenTransfers(network) {
             const transaction = await wallet.sendTransaction(tx);
             console.log(`Transaction sent: ${transaction.hash}`);
             console.log(`View on explorer: ${networks[network].explorer}/tx/${transaction.hash}`);
-               
+            
             await transaction.wait();
-               
+            
             if (i < numberOfTx - 1) {
                 const delay = await randomDelay(parseInt(minDelay), parseInt(maxDelay));
                 console.log(`Waiting ${delay/1000} seconds before next transaction...`);
@@ -346,7 +352,7 @@ async function stakeMolandakhubQuest(wallet) {
 
         console.log(`Transaction sent: ${stakeTx.hash}`);
         console.log(`View on explorer: ${networks.monad.explorer}/tx/${stakeTx.hash}`);
-
+        
         const receipt = await stakeTx.wait();
         
         if (receipt.status === 1) {
@@ -426,7 +432,7 @@ async function handleMonadStaking() {
 
             case '2':
                 const amountToUnstake = await askQuestion('Enter amount of sMON to unstake: ');
-                
+
                 if (isNaN(amountToUnstake) || amountToUnstake <= 0) {
                     console.error('Invalid amount!');
                     return;
@@ -516,7 +522,7 @@ async function handleNetworkOperations(network) {
 
         const choice = await askQuestion('\nSelect operation: ');
 
-        switch (network) {
+         switch (network) {
             case 'somnia':
                 switch (choice) {
                     case '1':
@@ -527,7 +533,22 @@ async function handleNetworkOperations(network) {
                         break;
                     case '0':
                         return;
-                    default: 
+                    default:
+                        console.log('Invalid choice!');
+                }
+                break;
+
+            case 'monad':
+                switch (choice) {
+                    case '1':
+                        await handleTokenTransfers('monad');
+                        break;
+                    case '2':
+                        await handleMonadStaking();
+                        break;
+                    case '0':
+                        return;
+                    default:
                         console.log('Invalid choice!');
                 }
                 break;
@@ -612,6 +633,9 @@ async function showMenu() {
 console.log('Starting Multi-Network Bot...');
 showMenu().catch(console.error);
         
-            
-                      
-                  
+    
+                        
+                        
+        
+
+
