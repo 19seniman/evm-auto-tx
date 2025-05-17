@@ -1,0 +1,36 @@
+{
+    "networks": {
+        "somnia": {
+            "name": "Somnia Testnet",
+            "chainId": 50312,
+            "rpc": "https://dream-rpc.somnia.network",
+            "symbol": "STT",
+            "explorer": "https://somnia-testnet.socialscan.io",
+            "faucetApi": "https://testnet.somnia.network/api/faucet"
+        },
+        "monad": {
+            "name": "Monad Testnet",
+            "chainId": 10143,
+            "rpc": "https://testnet-rpc.monad.xyz/",
+            "symbol": "MON",
+            "explorer": "https://testnet.monadexplorer.com",
+            "contracts": {
+                "staking": "0x07aabd925866e8353407e67c1d157836f7ad923e"
+            }
+        },
+        "nexus": {
+            "name": "MEGA Testnet",
+            "chainId": 6342,
+            "rpc": "https://carrot.megaeth.com/rpc",
+            "symbol": "ETH",
+            "explorer": "https://megaexplorer.xyz"
+        },
+        "zeroGravity": {
+            "name": "EXPchain Testnet",
+            "chainId": 18880,
+            "rpc": "https://rpc1-testnet.expchain.ai",
+            "symbol": "tZKJ",
+            "explorer": "https://blockscout-testnet.expchain.ai"
+        }
+    }
+}
