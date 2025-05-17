@@ -18,14 +18,14 @@
                 "staking": "0x07aabd925866e8353407e67c1d157836f7ad923e"
             }
         },
-        "megaeth": {
+        "nexus": {
             "name": "MEGA Testnet",
             "chainId": 6342,
             "rpc": "https://carrot.megaeth.com/rpc",
             "symbol": "ETH",
             "explorer": "https://megaexplorer.xyz"
         },
-        "Expchain": {
+        "zeroGravity": {
             "name": "EXPchain Testnet",
             "chainId": 18880,
             "rpc": "https://rpc1-testnet.expchain.ai",
