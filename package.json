@@ -1,5 +1,5 @@
 {
-    "name": "multinetwork-auto-tx",
+    "name": "evm-auto-tx",
     "version": "1.0.0",
     "description": "Automated wallet creation, faucet claiming, and token transfer bot for Somnia and Nexus Networks",
     "main": "index.js",
@@ -9,7 +9,7 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/airdropinsiders/MultiNetwork-Auto-Tx.git"
+      "url": "git+https://github.com/19seniman/evm-auto-tx.git"
     },
     "keywords": [
       "crypto",
@@ -24,9 +24,9 @@
     "author": "airdropinsiders",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/airdropinsiders/MultiNetwork-Auto-Tx/issues"
+      "url": "https://github.com/19seniman/evm-auto-tx.git/issues"
     },
-    "homepage": "https://github.com/airdropinsiders/MultiNetwork-Auto-Tx#readme",
+    "homepage": "https://github.com/19seniman/evm-auto-tx.git#readme",
     "dependencies": {
       "ethers": "^6.11.1",
       "axios": "^1.6.7",
