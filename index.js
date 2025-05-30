@@ -582,7 +582,7 @@ async function handleMonadStaking() {
 
 async function showMenu() {
     while (true) {
-        console.log('\n=== MULTI-NETWORK CRYPTO BOT | AIRDROP INSIDERS ===');
+        console.log('\n=== MULTI-NETWORK Auto Tx | 19Seniman From INSIDER ===');
         console.log('1. Somnia Network');
         console.log('2. Monad Network');
         console.log('3. Nexus Network');
