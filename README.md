@@ -39,7 +39,9 @@ npm install
 ```
 
 3. Create a `pk.txt` file in the root directory and add your private key: `0x......`
-
+```
+nano pk.txt
+```
 
 ## Usage
 
